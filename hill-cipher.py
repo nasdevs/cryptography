@@ -66,11 +66,16 @@ def decrypt(cipher, key):
     print('\nDeterminant of key : ', det_K)
     det_K = int(np.linalg.det(K) % 26)
     print('After Det K mod 26 : ', det_K)
+    for i in range(1, 26):
+        if (det_K * i) % 26 == 1:
+            det_K = i
+            break
+    print('\nModular multiplicative inverse : ', det_K)
 
     invers_K = sy.Matrix(K).adjugate()
     print(f'\nInvers of Key : \n{np.matrix(invers_K)}')
     K = np.multiply(det_K, invers_K)
-    print('\nAfter Det K . Invers K : \n', K)
+    print('\nAfter Modular . Invers K : \n', K)
     K = mod(K, 26)
     print(f'\nAfter key mod 26 : \n{np.matrix(K)}')
 
@@ -86,19 +91,20 @@ def decrypt(cipher, key):
 if __name__ == '__main__':
     clear()
 
-    # statis
-    # plaintext = 'nasrullahmakassarmahasis'
-    # key = 'UNEXPLAINEDTHING'
-
-    # dinamis (input)
-    key = str(input('Input key : '))
-
     while True:
-        plaintext = str(input('Input plaintext : '))
-        if len(plaintext) % int(math.sqrt(len(key))) != 0:
-            print(f'Jumlah huruf harus kelipatan {int(math.sqrt(len(key)))}, jumlah huruf saat ini {len(plaintext)}')
+        key = str(input('input key : '))
+        if math.sqrt(len(key)) not in range(1, 101):
+            print(f'jumlah huruf tidak memiliki akar bilangan bulat, jml huruf saat ini {len(key)} dan akar yang dihasilkan {round(math.sqrt(len(key)), 5)}')
         else:
             break
+
+    while True:
+        plaintext = str(input('input plaintext : '))
+        if len(plaintext) % int(math.sqrt(len(key))) != 0:
+            print(f'jumlah huruf harus kelipatan {int(math.sqrt(len(key)))}, jumlah huruf saat ini {len(plaintext)}. Anda kelebihan {len(plaintext) % int(math.sqrt(len(key)))} huruf')
+        else:
+            break
+
 
     clear()
 
