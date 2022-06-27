@@ -94,17 +94,16 @@ if __name__ == '__main__':
     while True:
         key = str(input('input key : '))
         if math.sqrt(len(key)) not in range(1, 101):
-            print(f'jumlah huruf tidak memiliki akar bilangan bulat, jml huruf saat ini {len(key)} dan akar yang dihasilkan {round(math.sqrt(len(key)), 5)}')
+            print(f'number of letters has no integer root, current number of letters {len(key)} and resulting root {round(math.sqrt(len(key)), 5)}')
         else:
             break
 
     while True:
         plaintext = str(input('input plaintext : '))
         if len(plaintext) % int(math.sqrt(len(key))) != 0:
-            print(f'jumlah huruf harus kelipatan {int(math.sqrt(len(key)))}, jumlah huruf saat ini {len(plaintext)}. Anda kelebihan {len(plaintext) % int(math.sqrt(len(key)))} huruf')
+            print(f'number of letters must be a multiple of {int(math.sqrt(len(key)))}, the current number of letters is {len(plaintext)}. You are excess {len(plaintext) % int(math.sqrt(len(key)))} letters')
         else:
             break
-
 
     clear()
 
