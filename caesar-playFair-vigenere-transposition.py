@@ -282,7 +282,7 @@ if __name__ == '__main__':
 
     vigenereChiper = VigenereChiper('bismillah', p='', auto=True)
     vigenereChiper.encrypt()
-    # vigenereChiper.decrypt()
+    # vigenereChiper.decrypt() # bug detected
 
     
     transposition = Transposition('5281936074', c='')
